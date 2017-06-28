@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="bootstrap.css" />
+		<script src="jquery-3.1.1.min.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+		<style>
+			.uploadBox {
+				width: 100%;
+				height: auto;
+				padding: 20px;
+			}
+			
+			.btn-upload {
+				/*margin-bottom: 20px;*/
+			}
+			
+			.uploadBox .progress {
+				/*display: none;*/
+				width: auto;
+				margin-bottom: 0;
+			}
+			li{
+				list-style: none;
+			}
+			.uploadList>ul>li{
+				min-width: 1025px;
+			}
+			#preview{
+				padding: 20px 20px 20px 0;
+			}
+			#preview>div{
+				width: 340px;
+				height:auto;
+			}
+			#preview>div img{
+				width: 100px;
+				height: 100px;
+			}
+			.icon-all{				
+				width: 32px;
+				height: 32px;
+				display: block;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				cursor: pointer;
+				float: left;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			.icon-upload{				
+				background: url('upload.png') no-repeat center;	
+				background-size: 24px 24px;			
+			}
+			.icon-upload:hover,.icon-delete:hover{
+				background-color:#deded9 ;
+			}
+			.icon-delete{
+				background: url('deleteUp.png') no-repeat center;
+				background-size: 24px 24px;
+			}
+			.smallImg{
+				width: 100px;
+				float: left;
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}
+			.smallImg>div{
+				padding: 8px;
+				height: auto;
+			}
+			.smallImg img{
+				border: 1px solid #ccc;
+			}
+			.progress{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="uploadBox">
+			<button type="button" class="btn btn-info btn-upload" id="clickUpLoad">点击上传文件</button>
+			<button type="button" id="toUpload" class="btn btn-success btn-upload">全部提交</button>
+			<button type="button" id="allRemove" class="btn btn-default btn-upload" onclick="$.removeSomeing()">全部移除</button>
+			<input type="file" id="fileUpload" multiple="multiple" style="opacity: 0;height: 0;"/>
+			
+			<div id='preview'>
+				<div class="clearfix">					
+									
+				</div>
+			</div>
+			
+		</div>
+		<!--文件列表-->
+		<script type="text/javascript">
+		
+			$(function(){
+				//上传按钮
+				$("#clickUpLoad").click(function(){
+					$("#fileUpload").click();
+	
+				})
+				$("#fileUpload").change(function(){
+					$.previewImage(this);
+				});
+				
+				//全部上传事件
+				$("#toUpload").click(function(){
+					$.upLoad(this,{
+						type:'all',//all:全部上传；one:单个上传
+						url:'upload.php',//上传地址
+						callback:function(data){
+							//data:返回数据
+							
+						}//上传成功后的回调函数
+					})
+				})
+
+			})
+				
+	</script>
+	</body>
+	
+</html>
